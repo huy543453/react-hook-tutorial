@@ -16,7 +16,7 @@ const HomePage = (props) => {
             autoPlay muted: tự đông chạy video, 
             loop: chạy video vô hạn*/}
             {showVid === true ? (
-                <div className="child">
+                <div className="vid">
                     <video controls autoPlay muted loop className="video1">
                         <source src={video} type="video/mp4" />
                     </video>
@@ -47,6 +47,19 @@ const HomePage = (props) => {
                 >
                     Hide
                 </button>
+            )}
+            {!showVid && (
+                <div className="homepage-content">
+                    <div className="title-1">Make forms worth filling out</div>
+                    <div className="title-2">
+                        Get more data—like signups, feedback, and anything
+                        else—with forms designed to be{" "}
+                        <b>refreshingly different.</b>
+                    </div>
+                    <div className="title-3">
+                        <button>Get started—it's free</button>
+                    </div>
+                </div>
             )}
         </div>
     );

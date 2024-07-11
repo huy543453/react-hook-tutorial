@@ -7,7 +7,7 @@ import { NavLink } from "react-router-dom";
 
 const Header = () => {
     return (
-        <Navbar expand="lg" className="bg-body-tertiary">
+        <Navbar expand="lg" className="bg-body-secondary py-3">
             <Container>
                 <NavLink to={"/"} className="navbar-brand">
                     React Hook
@@ -29,11 +29,17 @@ const Header = () => {
                         <Nav.Link href="/admins">Admin</Nav.Link> */}
                     </Nav>
                     <Nav>
-                        <NavDropdown title="Setting" id="basic-nav-dropdown">
+                        <button className="mx-2 p-2 border-3 rounded-2 btn btn-outline-primary">
+                            Đăng nhập
+                        </button>
+                        <button className="mx-2 p-2 border-3 rounded-2 btn btn-outline-secondary">
+                            Đăng ký
+                        </button>
+                        {/* <NavDropdown title="Setting" id="basic-nav-dropdown">
                             <NavDropdown.Item>Log in</NavDropdown.Item>
                             <NavDropdown.Item>Log out</NavDropdown.Item>
                             <NavDropdown.Item>Profile</NavDropdown.Item>
-                        </NavDropdown>
+                        </NavDropdown> */}
                     </Nav>
                 </Navbar.Collapse>
             </Container>
