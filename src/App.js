@@ -5,7 +5,7 @@ import "react-bootstrap";
 import { Outlet } from "react-router-dom";
 const App = () => {
     return (
-        <div className="">
+        <div className="app-container">
             <div className="header-container">
                 <Header />
             </div>
