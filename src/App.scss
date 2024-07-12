@@ -46,35 +46,35 @@ body {
                         position: absolute;
                         top: 100px;
                         right: 50px;
-                        width: 250px;
+                        width: 300px;
                         height: auto;
                     }
                     .video2 {
                         position: absolute;
                         top: 100px;
                         right: 400px;
-                        width: 250px;
+                        width: 300px;
                         height: auto;
                     }
                     .video4 {
                         position: absolute;
                         top: 100px;
                         right: 750px;
-                        width: 250px;
+                        width: 300px;
                         height: auto;
                     }
                 }
 
                 .video3 {
                     position: absolute;
-                    top: 20%;
+                    top: 100px;
                     right: 5%;
                     width: 500px;
                     height: auto;
                 }
                 .button {
                     position: absolute;
-                    bottom: 5%;
+                    bottom: 0;
 
                     right: 300px;
                 }
@@ -108,6 +108,22 @@ body {
                         }
                     }
                 }
+            }
+        }
+    }
+}
+
+.admin-container {
+    .admin-sidebar {
+        .css-ewdv3l {
+            background: rgb(11, 41, 72);
+            color: white;
+            :hover {
+                background: rgb(22, 118, 214);
+            }
+            .css-1tqrhto {
+                background: rgb(7, 25, 44);
+                color: white;
             }
         }
     }
