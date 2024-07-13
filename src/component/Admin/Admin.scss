@@ -1,56 +1,89 @@
 .admin-container {
     display: flex;
     .admin-sidebar {
+        //sidebar
         .css-1wvake5 {
             height: 100vh !important;
-            // width: 200px;
-            // min-width: 10px;
+            width: 300px;
+            min-width: 100px;
+            &.ps-collapsed {
+                width: 80px;
+                min-width: 80px;
+            }
 
+            // image ko bị nhạt màu
+            .css-dip3t8 {
+                // background-color: transparent;
+            }
+            // Menu
             .css-ewdv3l {
                 background: rgb(11, 41, 72);
                 color: white;
+                border-bottom: 2px solid black;
                 :hover {
                     background: rgb(22, 118, 214);
                 }
+                // SubMenu
                 .css-1tqrhto {
                     background: rgb(7, 25, 44);
                     color: white;
+                    border-bottom: 2px solid black;
                 }
             }
+            // chữ new
             .badge-red {
                 color: red;
                 font-weight: bold;
             }
-            // copy từ link https://github.com/azouaoui-med/react-pro-sidebar/blob/v0.x/demo/src/styles/App.scss
-            .sidebar-btn-wrapper {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                .sidebar-btn {
-                    transition: width 0.3s;
-                    width: 150px;
-                    padding: 1px 15px;
-                    border-radius: 40px;
-                    background: blue;
-                    color: black;
+            .footer {
+                position: absolute;
+                bottom: 0px;
 
-                    text-decoration: none;
-                    margin: 0 auto;
-                    height: 35px;
+                width: 100%;
+                // copy từ link https://github.com/azouaoui-med/react-pro-sidebar/blob/v0.x/demo/src/styles/App.scss
+                .sidebar-btn-wrapper {
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    text-overflow: ellipsis;
-                    overflow: hidden;
-                    span {
-                        margin-left: 5px;
-                        font-size: 13px;
-                    }
-                    &:hover {
-                        color: white;
+                    margin: 5px auto;
+
+                    .sidebar-btn {
+                        transition: width 0.3s;
+
+                        padding: 1px 5px;
+                        border-radius: 40px;
+                        background: transparent;
+                        color: black;
+
+                        text-decoration: none;
+                        margin: 0 auto;
+                        height: 35px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        text-overflow: ellipsis;
+                        overflow: hidden;
+                        span {
+                            margin-left: 5px;
+                            font-size: 13px;
+                        }
+                        &:hover {
+                            color: white;
+                            background-color: transparent;
+                        }
                     }
                 }
             }
+        }
+    }
+    .admin-content {
+        width: 100%;
+        .admin-header {
+            height: 40px;
+            border: 1px solid green;
+        }
+        .admin-main {
+            border: 1px solid red;
         }
     }
 }

@@ -29,10 +29,10 @@ const Header = () => {
                         <Nav.Link href="/admins">Admin</Nav.Link> */}
                     </Nav>
                     <Nav>
-                        <button className="mx-2 p-2 border-3 rounded-2 btn btn-outline-primary">
+                        <button className="mx-2 px-2 border-2 rounded-2 btn btn-outline-primary">
                             Đăng nhập
                         </button>
-                        <button className="mx-2 p-2 border-3 rounded-2 btn btn-outline-secondary">
+                        <button className="mx-2 px-2 border-2 rounded-2 btn btn-outline-secondary">
                             Đăng ký
                         </button>
                         {/* <NavDropdown title="Setting" id="basic-nav-dropdown">

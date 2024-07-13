@@ -8,6 +8,10 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import User from "./component/User/User";
 import Admin from "./component/Admin/Admin";
 import HomePage from "./component/Home/HomePage";
+import ManageUser from "./component/Admin/Content/ManageUser";
+import Dashboard from "./component/Admin/Content/Dashboard";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -20,8 +24,12 @@ root.render(
                     <Route index element={<HomePage />} />
                     <Route path="users" element={<User />} />
                 </Route>
-                <Route path="admins" element={<Admin />} />
+                <Route path="admins" element={<Admin />}>
+                    <Route index element={<Dashboard />} />
+                    <Route path="manage_users" element={<ManageUser />} />
+                </Route>
             </Routes>
+            <ToastContainer />
         </BrowserRouter>
         {/* </React.StrictMode> */}
     </Provider>
