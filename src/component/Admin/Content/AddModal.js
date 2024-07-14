@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import img1 from "../../../assets/image/4258.png";
+// import img1 from "../../../assets/image/4258.png";
 import { AiOutlinePlusCircle } from "react-icons/ai";
-import axios from "axios";
 import { toast } from "react-toastify";
+import { postAddUser } from "../../../service/apiService";
 
 const AddModal = (props) => {
     const { show, setShow } = props;
@@ -19,7 +19,7 @@ const AddModal = (props) => {
         setImage("");
         setPreviewImage("");
     };
-    const handleShow = () => setShow(true);
+    // const handleShow = () => setShow(true);
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -30,7 +30,7 @@ const AddModal = (props) => {
 
     const [isValidEmail, setIsValidEmail] = useState(false);
     const regex =
-        /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
     const validateEmail = (event) => {
         if (event.target.value.match(regex)) {
@@ -51,29 +51,31 @@ const AddModal = (props) => {
 
     const handleAddUser = async (e) => {
         e.preventDefault();
+        if (email === "") {
+            toast.error("Email không hợp được để trống");
+            return;
+        }
         if (!isValidEmail) {
             toast.error("Email không hợp lệ");
             return;
         }
 
-        const data = new FormData();
-        data.append("username", username);
-        data.append("password", password);
-        data.append("email", email);
-        data.append("role", role);
-        data.append("userImage", image);
+        if (password === "") {
+            toast.error("Password không được để trống");
+            return;
+        }
 
-        let res = await axios.post(
-            "http://localhost:8081/api/v1/participant",
-            data
-        );
+        let res = await postAddUser(username, password, email, role, image);
+        console.log(res);
         // Trong backend có sẵn EC (encode) = 0 là thành công, 1 là thất bại
-        if (res.data && res.data.EC === 0) {
+        // Do sự can thiệp của interceptors trong file axiosCustomize nên đã trả luôn về data, không cần ghi res.data
+        if (res && res.EC === 0) {
             toast.success("Thêm người dùng thành công");
             handleClose();
+            await props.loadUser();
         }
-        if (res.data && res.data.EC !== 0) {
-            toast.error(res.data.EM);
+        if (res && res.EC !== 0) {
+            toast.error(res.EM);
         }
     };
     console.log(image);
@@ -97,16 +99,27 @@ const AddModal = (props) => {
                 <Modal.Body>
                     <form className="row g-3">
                         <div className="col-md-6">
-                            <label className="form-label">Tên đăng nhập</label>
+                            <label className="form-label">Email</label>
                             <input
-                                type="text"
+                                type="email"
                                 className="form-control"
-                                name="username"
-                                value={username}
-                                onChange={(event) =>
-                                    setUsername(event.target.value)
-                                }
+                                name="email"
+                                value={email}
+                                onChange={(event) => {
+                                    setEmail(event.target.value);
+                                    validateEmail(event);
+                                }}
                             />
+                            {email !== "" && isValidEmail === false ? (
+                                <div
+                                    className="text-danger pt-2"
+                                    style={{ fontSize: 12 }}
+                                >
+                                    Email không hợp lệ
+                                </div>
+                            ) : (
+                                <></>
+                            )}
                         </div>
 
                         <div className="col-md-6">
@@ -123,24 +136,16 @@ const AddModal = (props) => {
                         </div>
 
                         <div className="col-md-6">
-                            <label className="form-label">Email</label>
+                            <label className="form-label">Tên đăng nhập</label>
                             <input
-                                type="email"
+                                type="text"
                                 className="form-control"
-                                name="email"
-                                value={email}
-                                onChange={(event) => {
-                                    setEmail(event.target.value);
-                                    validateEmail(event);
-                                }}
+                                name="username"
+                                value={username}
+                                onChange={(event) =>
+                                    setUsername(event.target.value)
+                                }
                             />
-                            {email !== "" && isValidEmail === false ? (
-                                <div className="text-danger pt-2">
-                                    Email không hợp lệ
-                                </div>
-                            ) : (
-                                <></>
-                            )}
                         </div>
 
                         <div className="col-md-6">
@@ -174,7 +179,7 @@ const AddModal = (props) => {
                         </div>
                         <div className="col-md-12 imgage-preview">
                             {previewImage !== "" ? (
-                                <img src={previewImage}></img>
+                                <img src={previewImage} alt=""></img>
                             ) : (
                                 <div>Ảnh xem trước</div>
                             )}
