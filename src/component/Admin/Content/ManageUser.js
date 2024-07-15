@@ -2,15 +2,19 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import AddModal from "./AddModal";
+import ModalAdd from "./ModalAdd";
 import "./ManageUser.scss";
 import { IoMdAddCircleOutline } from "react-icons/io";
 import TableUser from "./TableUser";
 import { getAllUser } from "../../../service/apiService";
+import ModalUpdate from "./ModalUpdate";
 
 const ManageUser = (props) => {
-    const [show, setShow] = useState(false);
+    const [showModalAdd, setShowModalAdd] = useState(false);
+    const [showModalUpdate, setShowModalUpdate] = useState(false);
+
     const [users, setUsers] = useState([]);
+    const [userUpdate, setUserUpdate] = useState({});
 
     useEffect(() => {
         loadUser();
@@ -22,22 +26,43 @@ const ManageUser = (props) => {
             setUsers(res.DT);
         }
     };
+
+    const updateUser = (user) => {
+        setUserUpdate(user);
+    };
+
     return (
         <div className="manage-user-container">
             <div className="title">Quản lý người dùng</div>
             <div className="content">
-                <div className="btn-add">
+                <div className="btn-add me-5">
                     <button
                         className="btn btn-primary border-rounded-1"
-                        onClick={() => setShow(true)}
+                        onClick={() => setShowModalAdd(true)}
                     >
                         <IoMdAddCircleOutline /> Thêm người dùng
                     </button>
                 </div>
                 <div className="table-container">
-                    <TableUser users={users} />
+                    <TableUser
+                        users={users}
+                        setShowModalUpdate={setShowModalUpdate}
+                        updateUser={updateUser}
+                    />
                 </div>
-                <AddModal show={show} setShow={setShow} loadUser={loadUser} />
+                <ModalAdd
+                    show={showModalAdd}
+                    setShow={setShowModalAdd}
+                    loadUser={loadUser}
+                />
+
+                <ModalUpdate
+                    show={showModalUpdate}
+                    setShow={setShowModalUpdate}
+                    userUpdate={userUpdate}
+                    setUserUpdate={setUserUpdate}
+                    loadUser={loadUser}
+                />
             </div>
         </div>
     );

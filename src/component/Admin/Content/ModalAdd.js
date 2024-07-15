@@ -7,7 +7,7 @@ import { AiOutlinePlusCircle } from "react-icons/ai";
 import { toast } from "react-toastify";
 import { postAddUser } from "../../../service/apiService";
 
-const AddModal = (props) => {
+const ModalAdd = (props) => {
     const { show, setShow } = props;
 
     const handleClose = () => {
@@ -15,7 +15,7 @@ const AddModal = (props) => {
         setUsername("");
         setPassword("");
         setEmail("");
-        setRole("");
+        setRole("USER");
         setImage("");
         setPreviewImage("");
     };
@@ -24,7 +24,7 @@ const AddModal = (props) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
-    const [role, setRole] = useState("");
+    const [role, setRole] = useState("USER");
     const [image, setImage] = useState("");
     const [previewImage, setPreviewImage] = useState("");
 
@@ -45,7 +45,7 @@ const AddModal = (props) => {
             setPreviewImage(URL.createObjectURL(event.target.files[0]));
             setImage(event.target.files[0]);
         } else {
-            setImage("");
+            return;
         }
     };
 
@@ -66,7 +66,7 @@ const AddModal = (props) => {
         }
 
         let res = await postAddUser(username, password, email, role, image);
-        console.log(res);
+
         // Trong backend có sẵn EC (encode) = 0 là thành công, 1 là thất bại
         // Do sự can thiệp của interceptors trong file axiosCustomize nên đã trả luôn về data, không cần ghi res.data
         if (res && res.EC === 0) {
@@ -78,7 +78,6 @@ const AddModal = (props) => {
             toast.error(res.EM);
         }
     };
-    console.log(image);
 
     return (
         <>
@@ -127,7 +126,6 @@ const AddModal = (props) => {
                             <input
                                 type="password"
                                 className="form-control"
-                                name="password"
                                 value={password}
                                 onChange={(event) =>
                                     setPassword(event.target.value)
@@ -158,7 +156,9 @@ const AddModal = (props) => {
                                     setRole(event.target.value)
                                 }
                             >
-                                <option value="USER">Người dùng</option>
+                                <option selected value="USER">
+                                    Người dùng
+                                </option>
                                 <option value="ADMIN">Administrator</option>
                             </select>
                         </div>
@@ -202,4 +202,4 @@ const AddModal = (props) => {
     );
 };
 
-export default AddModal;
+export default ModalAdd;

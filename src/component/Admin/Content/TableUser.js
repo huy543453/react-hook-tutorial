@@ -1,12 +1,11 @@
 import React from "react";
-import { getAllUser } from "../../../service/apiService";
 
 const TableUser = (props) => {
-    const { users } = props;
+    const { users, setShowModalUpdate, updateUser } = props;
 
     return (
-        <>
-            <table className="table table-bordered table-hover border-black mt-4">
+        <div className="col-md-11 ms-5">
+            <table className="table table-bordered table-hover border-black mt-4 me-4">
                 <thead>
                     <tr className="text-center">
                         <th scope="col">STT</th>
@@ -21,9 +20,7 @@ const TableUser = (props) => {
                         users.map((user, index) => {
                             return (
                                 <tr key={user.id}>
-                                    <td scope="row" className="text-center">
-                                        {index + 1}
-                                    </td>
+                                    <td className="text-center">{index + 1}</td>
                                     <td>{user.username}</td>
                                     <td>{user.email}</td>
                                     <td>{user.role}</td>
@@ -31,7 +28,13 @@ const TableUser = (props) => {
                                         <button className="btn btn-info mx-1">
                                             Xem
                                         </button>
-                                        <button className="btn btn-warning mx-1">
+                                        <button
+                                            className="btn btn-warning mx-1"
+                                            onClick={() => {
+                                                setShowModalUpdate(true);
+                                                updateUser(user);
+                                            }}
+                                        >
                                             Cập nhật
                                         </button>
                                         <button className="btn btn-danger mx-1">
@@ -50,7 +53,7 @@ const TableUser = (props) => {
                     )}
                 </tbody>
             </table>
-        </>
+        </div>
     );
 };
 
