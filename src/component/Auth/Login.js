@@ -2,11 +2,14 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { postLogin } from "../../service/apiService";
 import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { doLogin } from "../../redux/action/userAction";
 
 const Login = (props) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
+    const dispastch = useDispatch();
 
     const handleLogin = async () => {
         let res = await postLogin(email, password);
@@ -16,6 +19,8 @@ const Login = (props) => {
         if (res && res.EC === 0) {
             toast.success("Đăng nhập thành công");
             navigate("/");
+
+            dispastch(doLogin(res));
         }
         if (res && res.EC !== 0) {
             toast.error(res.EM);
@@ -58,10 +63,12 @@ const Login = (props) => {
                         <input
                             className="form-control"
                             type="password"
+                            name="current-password"
                             value={password}
                             onChange={(event) =>
                                 setPassword(event.target.value)
                             }
+                            autoComplete="current-password"
                         />
                     </div>
 

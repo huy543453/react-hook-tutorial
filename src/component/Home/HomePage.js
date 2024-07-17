@@ -3,6 +3,7 @@ import video from "../../assets/video/Beautiful Chinese Girls 1.mp4";
 import video2 from "../../assets/video/4300.mp4";
 import video4 from "../../assets/video/4209.mp4";
 import video3 from "../../assets/video/video-homepage2.mp4";
+import { useSelector } from "react-redux";
 
 const HomePage = (props) => {
     const [showVid, setShowVid] = useState(false);
@@ -10,6 +11,12 @@ const HomePage = (props) => {
     const handleOnClickShowHide = () => {
         setShowVid(!showVid);
     };
+
+    const account = useSelector((state) => state.user.account);
+    const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
+
+    console.log(account, isAuthenticated);
+
     return (
         <div className="homepage-container">
             {/* controls: hiện nút tắt bật chạy video
