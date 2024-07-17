@@ -1,6 +1,7 @@
 import React from "react";
+import ReactPaginate from "react-paginate";
 
-const TableUser = (props) => {
+const TableUserPaginate = (props) => {
     const {
         users,
         setShowModalUpdate,
@@ -8,7 +9,14 @@ const TableUser = (props) => {
         setShowModalView,
         setShowModalDelete,
         deleteUser,
+        pageCount,
     } = props;
+
+    // Invoke when user click to request another page.
+    const handlePageClick = (event) => {
+        props.loadUserPaginate(+event.selected + 1);
+        props.setCurrentPage(+event.selected + 1);
+    };
 
     return (
         <div className="col-md-11 ms-5">
@@ -27,7 +35,7 @@ const TableUser = (props) => {
                         users.map((user, index) => {
                             return (
                                 <tr key={user.id}>
-                                    <td className="text-center">{index + 1}</td>
+                                    <td className="text-center">{user.id}</td>
                                     <td>{user.username}</td>
                                     <td>{user.email}</td>
                                     <td>{user.role}</td>
@@ -72,8 +80,32 @@ const TableUser = (props) => {
                     )}
                 </tbody>
             </table>
+            <div className="d-flex justify-content-center">
+                <ReactPaginate
+                    nextLabel="Sau >"
+                    onPageChange={handlePageClick}
+                    pageRangeDisplayed={3}
+                    marginPagesDisplayed={2}
+                    pageCount={pageCount}
+                    previousLabel="< Trước"
+                    pageClassName="page-item"
+                    pageLinkClassName="page-link"
+                    previousClassName="page-item"
+                    previousLinkClassName="page-link"
+                    nextClassName="page-item"
+                    nextLinkClassName="page-link"
+                    breakLabel="..."
+                    breakClassName="page-item"
+                    breakLinkClassName="page-link"
+                    containerClassName="pagination"
+                    activeClassName="active"
+                    renderOnZeroPageCount={null}
+                    // khi thay đổi thì sẽ quay lại trang 1
+                    forcePage={props.currentPage - 1}
+                />
+            </div>
         </div>
     );
 };
 
-export default TableUser;
+export default TableUserPaginate;

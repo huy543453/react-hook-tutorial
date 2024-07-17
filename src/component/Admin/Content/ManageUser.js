@@ -8,16 +8,28 @@ import { IoMdAddCircleOutline } from "react-icons/io";
 import TableUser from "./TableUser";
 import { getAllUser } from "../../../service/apiService";
 import ModalUpdate from "./ModalUpdate";
+import ModalView from "./ModalView";
+import ModalDelete from "./ModalDelete";
+import TableUserPaginate from "./TableUserPaginate";
+import { getUserWithPaginate } from "../../../service/apiService";
 
 const ManageUser = (props) => {
+    const limit_user = 5;
+    const [pageCount, setPageCount] = useState(0);
+    const [currentPage, setCurrentPage] = useState(1);
+
     const [showModalAdd, setShowModalAdd] = useState(false);
     const [showModalUpdate, setShowModalUpdate] = useState(false);
+    const [showModalView, setShowModalView] = useState(false);
+    const [showModalDelete, setShowModalDelete] = useState(false);
 
     const [users, setUsers] = useState([]);
     const [userUpdate, setUserUpdate] = useState({});
+    const [userDelete, setUserDelete] = useState({});
 
     useEffect(() => {
-        loadUser();
+        // loadUser();
+        loadUserPaginate(1);
     }, []);
 
     const loadUser = async () => {
@@ -27,8 +39,20 @@ const ManageUser = (props) => {
         }
     };
 
+    const loadUserPaginate = async (page) => {
+        let res = await getUserWithPaginate(page, limit_user);
+        if (res.EC === 0) {
+            setUsers(res.DT.users);
+            setPageCount(res.DT.totalPages);
+        }
+    };
+
     const updateUser = (user) => {
         setUserUpdate(user);
+    };
+
+    const deleteUser = (user) => {
+        setUserDelete(user);
     };
 
     return (
@@ -44,16 +68,35 @@ const ManageUser = (props) => {
                     </button>
                 </div>
                 <div className="table-container">
-                    <TableUser
+                    {/* <TableUser
                         users={users}
                         setShowModalUpdate={setShowModalUpdate}
                         updateUser={updateUser}
+                        setShowModalView={setShowModalView}
+                        setShowModalDelete={setShowModalDelete}
+                        deleteUser={deleteUser}
+                    /> */}
+
+                    <TableUserPaginate
+                        users={users}
+                        setShowModalUpdate={setShowModalUpdate}
+                        updateUser={updateUser}
+                        setShowModalView={setShowModalView}
+                        setShowModalDelete={setShowModalDelete}
+                        deleteUser={deleteUser}
+                        loadUserPaginate={loadUserPaginate}
+                        pageCount={pageCount}
+                        currentPage={currentPage}
+                        setCurrentPage={setCurrentPage}
                     />
                 </div>
                 <ModalAdd
                     show={showModalAdd}
                     setShow={setShowModalAdd}
                     loadUser={loadUser}
+                    loadUserPaginate={loadUserPaginate}
+                    currentPage={currentPage}
+                    setCurrentPage={setCurrentPage}
                 />
 
                 <ModalUpdate
@@ -62,6 +105,26 @@ const ManageUser = (props) => {
                     userUpdate={userUpdate}
                     setUserUpdate={setUserUpdate}
                     loadUser={loadUser}
+                    loadUserPaginate={loadUserPaginate}
+                    currentPage={currentPage}
+                    setCurrentPage={setCurrentPage}
+                />
+
+                <ModalView
+                    show={showModalView}
+                    setShow={setShowModalView}
+                    userView={userUpdate}
+                    setUserView={setUserUpdate}
+                />
+
+                <ModalDelete
+                    show={showModalDelete}
+                    setShow={setShowModalDelete}
+                    userDelete={userDelete}
+                    loadUser={loadUser}
+                    loadUserPaginate={loadUserPaginate}
+                    currentPage={currentPage}
+                    setCurrentPage={setCurrentPage}
                 />
             </div>
         </div>

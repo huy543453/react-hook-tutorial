@@ -72,7 +72,9 @@ const ModalAdd = (props) => {
         if (res && res.EC === 0) {
             toast.success("Thêm người dùng thành công");
             handleClose();
-            await props.loadUser();
+            // await props.loadUser();
+            await props.loadUserPaginate(1);
+            props.setCurrentPage(1);
         }
         if (res && res.EC !== 0) {
             toast.error(res.EM);
@@ -109,15 +111,13 @@ const ModalAdd = (props) => {
                                     validateEmail(event);
                                 }}
                             />
-                            {email !== "" && isValidEmail === false ? (
+                            {email !== "" && isValidEmail === false && (
                                 <div
                                     className="text-danger pt-2"
                                     style={{ fontSize: 12 }}
                                 >
                                     Email không hợp lệ
                                 </div>
-                            ) : (
-                                <></>
                             )}
                         </div>
 
