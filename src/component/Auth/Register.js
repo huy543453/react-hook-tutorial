@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { LuEye } from "react-icons/lu";
 import { LuEyeOff } from "react-icons/lu";
-import "./Register.scss";
 import { useNavigate } from "react-router-dom";
 import { postRegister } from "../../service/apiService";
 import { toast } from "react-toastify";

@@ -7,14 +7,14 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 // lùi chữ sang hai bên
-@media (min-width: 1400px) {
+@media (min-width: 1200px) {
     .container,
     .container-lg,
     .container-md,
     .container-sm,
     .container-xl,
     .container-xxl {
-        max-width: 1490px;
+        max-width: 1340px;
     }
 }
 
