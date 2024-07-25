@@ -9,11 +9,11 @@ import {
 } from "react-icons/fa";
 import img1 from "../../assets/image/4258.png";
 import img2 from "../../assets/image/4300.png";
-import img3 from "../../assets/image/bg2.jpg";
-import { Link } from "react-router-dom";
-
+import img3 from "../../assets/image/sex.png";
+import { Link, useNavigate } from "react-router-dom";
 const SideBar = (props) => {
     const { collapsed, toggled, handleToggleSidebar } = props;
+    const navigate = useNavigate();
     return (
         <>
             <Sidebar
@@ -42,7 +42,8 @@ const SideBar = (props) => {
                             height={"auto"}
                             alt=""
                         ></img>
-                        &nbsp; <span>Pro SideBar</span>
+                        &nbsp;{" "}
+                        <span onClick={() => navigate("/")}>Pro SideBar</span>
                         &nbsp; <FaReact size={"2em"} />
                     </div>
                 </>
@@ -64,13 +65,23 @@ const SideBar = (props) => {
                             >
                                 Quản lý User
                             </MenuItem>
-                            <MenuItem>Quản lý bài Quiz</MenuItem>
-                            <MenuItem>Quản lý câu hỏi</MenuItem>
+                            <MenuItem
+                                component={<Link to="/admins/manage_quizzes" />}
+                            >
+                                Quản lý bài Quiz
+                            </MenuItem>
+                            <MenuItem
+                                component={
+                                    <Link to="/admins/manage_questions" />
+                                }
+                            >
+                                Quản lý câu hỏi
+                            </MenuItem>
                         </SubMenu>
                     </Menu>
                 </>
 
-                <div style={{ textAlign: "center" }} className="footer">
+                <div className="footer">
                     <div className="sidebar-btn-wrapper">
                         <a
                             href="https://github.com/azouaoui-med/react-pro-sidebar"

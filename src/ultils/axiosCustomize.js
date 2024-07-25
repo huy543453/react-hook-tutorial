@@ -1,5 +1,6 @@
 import axios from "axios";
 import NProgress from "nprogress";
+import { store } from "../redux/store.js";
 
 const instance = axios.create({
     baseURL: "http://localhost:8081/",
@@ -15,6 +16,11 @@ NProgress.configure({
 // Add a request interceptor
 instance.interceptors.request.use(
     function (config) {
+        // console.log("check store:", store.getState());
+        // cách để lấy access_token
+        const access_token = store?.getState()?.user?.account?.access_token;
+        config.headers["Authorization"] = "Bearer " + access_token;
+        // Thanh chạy delay login
         NProgress.start();
 
         // Do something before request is sent
@@ -35,7 +41,6 @@ instance.interceptors.response.use(
         return response && response.data ? response.data : response;
     },
     function (error) {
-        console.log(error);
         // Any status codes that falls outside the range of 2xx cause this function to trigger
         // Do something with response error
         return error && error.response && error.response.data

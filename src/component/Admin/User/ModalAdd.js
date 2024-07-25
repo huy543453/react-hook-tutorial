@@ -177,7 +177,7 @@ const ModalAdd = (props) => {
                                 onChange={(event) => handleUploadImage(event)}
                             />
                         </div>
-                        <div className="col-md-12 imgage-preview">
+                        <div className="col-md-12 image-preview">
                             {previewImage !== "" ? (
                                 <img src={previewImage} alt=""></img>
                             ) : (

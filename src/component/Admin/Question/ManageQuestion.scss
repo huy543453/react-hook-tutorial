@@ -1,0 +1,77 @@
+.question-container {
+    .add-question {
+        .content {
+            .question-content {
+                display: flex;
+                align-items: center;
+                gap: 15px;
+
+                .upload-image {
+                    .label-upload {
+                        margin-right: 5px;
+                        color: blue;
+                        &:hover {
+                            color: gray;
+                        }
+                        cursor: pointer;
+                    }
+                }
+                .btn-add {
+                    .icon-add {
+                        margin-right: 15px;
+                        color: green;
+                        &:hover {
+                            color: gray;
+                        }
+                        cursor: pointer;
+                    }
+                    .icon-sub {
+                        margin-right: 15px;
+                        color: red;
+                        &:hover {
+                            color: gray;
+                        }
+                        cursor: pointer;
+                    }
+                }
+                .preview-image {
+                    cursor: pointer;
+                    &:hover {
+                        color: gray;
+                    }
+                }
+            }
+            .answer-content {
+                display: flex;
+                align-items: center;
+                gap: 16px;
+                margin-bottom: 16px;
+
+                .check-box {
+                }
+
+                .answer-name {
+                }
+
+                .btn-add {
+                    .icon-add {
+                        margin-right: 15px;
+                        color: green;
+                        &:hover {
+                            color: gray;
+                        }
+                        cursor: pointer;
+                    }
+                    .icon-sub {
+                        margin-right: 15px;
+                        color: red;
+                        &:hover {
+                            color: gray;
+                        }
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+}

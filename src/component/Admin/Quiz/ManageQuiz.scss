@@ -1,0 +1,70 @@
+.quiz-container {
+    .add {
+        fieldset {
+            legend {
+                font-size: 16px;
+            }
+            .label-upload {
+                display: flex;
+                align-items: center; // trục y dọc
+                justify-content: center; // trục x ngang
+                padding: 3px 10px;
+                gap: 5px;
+                width: fit-content; // khớp với ảnh, nội dung
+                border: 2px solid black;
+                background: rgb(240, 240, 240); // button face
+                border-radius: 5px;
+                cursor: pointer;
+                &:hover {
+                    background: #aaaaaa;
+                }
+            }
+            .image-preview {
+                display: flex;
+                height: 150px;
+                width: fit-content;
+                border: 1px dashed #ccc;
+                border-radius: 5px;
+                justify-content: center; // trục x ngang
+                align-items: center; // trục y dọc
+                color: #ccc;
+                img {
+                    max-height: 100%; // ảnh có thể vừa với div cha
+                    max-width: 100%;
+                }
+            }
+        }
+    }
+}
+
+.modal-add {
+    .label-upload {
+        display: flex;
+        align-items: center; // trục y dọc
+        justify-content: center; // trục x ngang
+        padding: 3px 10px;
+        gap: 5px;
+        width: fit-content; // khớp với ảnh, nội dung
+        border: 2px solid black;
+        background: rgb(240, 240, 240); // button face
+        border-radius: 5px;
+        cursor: pointer;
+        &:hover {
+            background: #aaaaaa;
+        }
+    }
+    .image-preview {
+        display: flex;
+        height: 150px;
+        width: fit-content;
+        border: 1px dashed #ccc;
+        border-radius: 5px;
+        justify-content: center; // trục x ngang
+        align-items: center; // trục y dọc
+        color: #ccc;
+        img {
+            max-height: 100%; // ảnh có thể vừa với div cha
+            max-width: 100%;
+        }
+    }
+}

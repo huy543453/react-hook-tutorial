@@ -14,64 +14,64 @@
             // image ko bị nhạt màu
             .css-dip3t8 {
                 // background-color: transparent;
-            }
-            // Menu
-            .css-ewdv3l {
-                background: rgb(11, 41, 72);
-                color: white;
-                border-bottom: 2px solid black;
-                :hover {
-                    background: rgb(22, 118, 214);
-                }
-                // SubMenu
-                .css-1tqrhto {
-                    background: rgb(7, 25, 44);
+                // Menu
+                .css-16jesut {
+                    background: rgb(11, 41, 72);
                     color: white;
                     border-bottom: 2px solid black;
-                }
-            }
-            // chữ new
-            .badge-red {
-                color: red;
-                font-weight: bold;
-            }
-            .footer {
-                // display: flex;
-                // align-items: end;
-                // justify-content: end;
-                position: absolute;
-                bottom: 0px;
-
-                width: 100%;
-                // copy từ link https://github.com/azouaoui-med/react-pro-sidebar/blob/v0.x/demo/src/styles/App.scss
-                .sidebar-btn-wrapper {
-                    display: flex;
-                    justify-content: center;
-                    margin: 5px auto;
-
-                    .sidebar-btn {
-                        transition: width 0.3s;
-
-                        padding: 1px 5px;
-                        border-radius: 40px;
-                        background: transparent;
-                        color: black;
-
-                        text-decoration: none;
-                        margin: 0 auto;
-                        height: 35px;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        text-overflow: ellipsis;
-                        overflow: hidden;
-                        span {
-                            margin-left: 5px;
-                            font-size: 13px;
+                    :hover {
+                        background: rgb(22, 118, 214);
+                    }
+                    // SubMenu
+                    .css-1tqrhto {
+                        background: rgb(7, 25, 44);
+                        color: white;
+                        border-bottom: 2px solid black;
+                        :hover {
+                            background: rgb(207, 218, 228);
                         }
-                        &:hover {
-                            color: white;
-                            background-color: transparent;
+                    }
+                }
+                // chữ new
+                .badge-red {
+                    color: red;
+                    font-weight: bold;
+                }
+                .footer {
+                    position: absolute;
+                    bottom: 0px;
+
+                    width: 100%;
+                    // copy từ link https://github.com/azouaoui-med/react-pro-sidebar/blob/v0.x/demo/src/styles/App.scss
+                    .sidebar-btn-wrapper {
+                        display: flex;
+                        justify-content: center;
+                        margin: 5px auto;
+
+                        .sidebar-btn {
+                            transition: width 0.3s;
+
+                            padding: 1px 5px;
+                            border-radius: 40px;
+                            background: transparent;
+                            color: black;
+
+                            text-decoration: none;
+                            margin: 0 auto;
+                            height: 35px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            text-overflow: ellipsis;
+                            overflow: hidden;
+                            span {
+                                margin-left: 5px;
+                                font-size: 13px;
+                            }
+                            &:hover {
+                                color: white;
+                                background-color: transparent;
+                            }
                         }
                     }
                 }
@@ -81,10 +81,15 @@
     .admin-content {
         width: 100%;
         .admin-header {
-            height: 40px;
+            display: flex;
+            align-items: center;
             border: 1px solid green;
+            padding: 5px;
+            height: 50px;
         }
         .admin-main {
+            // hiện thanh scroll bar cần phải setting chiều cao để biết khi nào overflow
+            height: calc(100vh - 50px);
         }
     }
 }

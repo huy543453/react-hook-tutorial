@@ -4,6 +4,7 @@ import video2 from "../../assets/video/4300.mp4";
 import video4 from "../../assets/video/4209.mp4";
 import video3 from "../../assets/video/video-homepage2.mp4";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const HomePage = (props) => {
     const [showVid, setShowVid] = useState(false);
@@ -12,10 +13,10 @@ const HomePage = (props) => {
         setShowVid(!showVid);
     };
 
-    const account = useSelector((state) => state.user.account);
     const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
+    const navigate = useNavigate();
 
-    console.log(account, isAuthenticated);
+    // console.log(account, isAuthenticated);
 
     return (
         <div className="homepage-container">
@@ -64,7 +65,13 @@ const HomePage = (props) => {
                         <b>refreshingly different.</b>
                     </div>
                     <div className="title-3">
-                        <button>Get started—it's free</button>
+                        {isAuthenticated === false ? (
+                            <button>Get started—it's free</button>
+                        ) : (
+                            <button onClick={() => navigate("/users")}>
+                                Làm bài ngay
+                            </button>
+                        )}
                     </div>
                 </div>
             )}
