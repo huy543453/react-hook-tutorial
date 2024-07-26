@@ -4,12 +4,17 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { NavLink, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { postLogOut } from "../../service/apiService";
+import { toast } from "react-toastify";
+import { doLogout } from "../../redux/action/userAction";
+import Language from "./Language";
 
 const Header = () => {
     const navigate = useNavigate();
     const account = useSelector((state) => state.user.account);
     const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
+    const dispatch = useDispatch();
 
     const handleLogin = () => {
         navigate("/login");
@@ -17,6 +22,20 @@ const Header = () => {
 
     const handleRegister = () => {
         navigate("/register");
+    };
+
+    const handleLogOut = async () => {
+        console.log(account.email, account.refresh_token);
+        let res = await postLogOut(account.email, account.refresh_token);
+        // Do sự can thiệp của interceptors trong file axiosCustomize nên đã trả luôn về data, không cần ghi res.data
+        if (res && res.EC === 0) {
+            toast.success("Đăng xuất thành công");
+            dispatch(doLogout());
+            navigate("/login");
+        }
+        if (res && res.EC !== 0) {
+            toast.error(res.EM);
+        }
     };
 
     return (
@@ -59,14 +78,18 @@ const Header = () => {
                             </>
                         ) : (
                             <NavDropdown
-                                title="Setting"
+                                title="Thiết lập"
                                 id="basic-nav-dropdown"
                             >
-                                <NavDropdown.Item>Log in</NavDropdown.Item>
-                                <NavDropdown.Item>Log out</NavDropdown.Item>
                                 <NavDropdown.Item>Profile</NavDropdown.Item>
+                                <NavDropdown.Item
+                                    onClick={() => handleLogOut()}
+                                >
+                                    Đăng xuất
+                                </NavDropdown.Item>
                             </NavDropdown>
                         )}
+                        <Language />
                     </Nav>
                 </Navbar.Collapse>
             </Container>

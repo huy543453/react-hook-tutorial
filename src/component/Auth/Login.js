@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { doLogin } from "../../redux/action/userAction";
 import { FaSpinner } from "react-icons/fa";
 import "./Login.scss";
+import Language from "../Header/Language";
 
 const Login = (props) => {
     const [email, setEmail] = useState("");
@@ -59,16 +60,28 @@ const Login = (props) => {
         }
     };
 
+    const onKeyDown = (event) => {
+        // 'keypress' event misbehaves on mobile so we track 'Enter' key via 'keydown' event
+        if (event && event.key && event.key === "Enter") {
+            event.preventDefault();
+            event.stopPropagation();
+            handleLogin();
+        }
+    };
+
     return (
         <div className="bg-body-secondary vh-100">
-            <div className="text-end mb-5 py-2 pe-5 border-bottom border-top border-black ">
+            <div className="mb-5 py-2 pe-5 border-bottom border-top border-black d-flex align-items-center justify-content-end">
                 <span>Bạn chưa có tài khoản?</span>
                 <button
-                    className="btn btn-primary ms-2"
+                    className="btn btn-primary mx-2"
                     onClick={() => navigate("/register")}
                 >
                     Đăng ký
                 </button>
+                <div className="me-4">
+                    <Language />
+                </div>
             </div>
 
             <div className="col-4 mx-auto p-4 text-center border rounded border-black border-2">
@@ -88,6 +101,7 @@ const Login = (props) => {
                                 setEmail(event.target.value);
                                 validateEmail(event);
                             }}
+                            onKeyDown={(event) => onKeyDown(event)}
                         />
                         {email !== "" && isValidEmail === false && (
                             <div
@@ -110,6 +124,7 @@ const Login = (props) => {
                             onChange={(event) =>
                                 setPassword(event.target.value)
                             }
+                            onKeyDown={(event) => onKeyDown(event)}
                         />
                     </div>
 

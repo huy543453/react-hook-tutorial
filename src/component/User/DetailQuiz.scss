@@ -66,6 +66,13 @@
                 &.selected {
                     background: rgb(170, 210, 255);
                     color: black;
+                    &.clicked {
+                        color: red;
+                    }
+                    &:hover {
+                        background: rgb(3, 110, 60);
+                        color: red;
+                    }
                 }
                 &.clicked {
                     color: red;

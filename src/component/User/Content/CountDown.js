@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 const CountDown = (props) => {
     const { timeUp } = props;
-    const [count, setCount] = useState(5);
+    const [count, setCount] = useState(50000);
     const covertToHHMMSS = (count) => {
         if (count > 3600) {
             return new Date(count * 1000).toISOString().substring(11, 19);

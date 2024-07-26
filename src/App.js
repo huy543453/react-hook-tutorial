@@ -15,6 +15,10 @@ import ListQuiz from "./component/User/ListQuiz";
 import DetailQuiz from "./component/User/DetailQuiz";
 import ManageQuiz from "./component/Admin/Quiz/ManageQuiz";
 import ManageQuestion from "./component/Admin/Question/ManageQuestion";
+import PrivateRoute from "./routes/PrivateRoute";
+
+import { Suspense } from "react";
+
 const App = (props) => {
     const ErrorPage = () => {
         return (
@@ -27,11 +31,25 @@ const App = (props) => {
                 <Route path="/" element={<Layout />}>
                     {/* Route đặc biệt khi không có Outlet nào đc render*/}
                     <Route index element={<HomePage />} />
-                    <Route path="users" element={<ListQuiz />} />
+                    <Route
+                        path="users"
+                        element={
+                            <PrivateRoute>
+                                <ListQuiz />
+                            </PrivateRoute>
+                        }
+                    />
                 </Route>
                 <Route path="quiz/:id" element={<DetailQuiz />} />
 
-                <Route path="admins" element={<Admin />}>
+                <Route
+                    path="admins"
+                    element={
+                        <PrivateRoute>
+                            <Admin />
+                        </PrivateRoute>
+                    }
+                >
                     <Route index element={<Dashboard />} />
                     <Route path="manage_users" element={<ManageUser />} />
                     <Route path="manage_quizzes" element={<ManageQuiz />} />
@@ -44,6 +62,8 @@ const App = (props) => {
                 <Route path="login" element={<Login />} />
                 <Route path="register" element={<Register />} />
 
+                <Route path="test" element={<PrivateRoute />} />
+
                 <Route path="*" element={<ErrorPage />} />
             </Routes>
             <ToastContainer />
@@ -51,4 +71,10 @@ const App = (props) => {
     );
 };
 
-export default App;
+export default function WrappedApp() {
+    return (
+        <Suspense fallback="...is loading">
+            <App />
+        </Suspense>
+    );
+}

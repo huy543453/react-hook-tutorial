@@ -7,6 +7,7 @@ import { store, persistor } from "./redux/store.js";
 import "../node_modules/nprogress/nprogress.css";
 import { PersistGate } from "redux-persist/integration/react";
 import "react-awesome-lightbox/build/style.css";
+import "./ultils/i18n.js";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

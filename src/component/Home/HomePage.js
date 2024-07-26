@@ -6,8 +6,12 @@ import video3 from "../../assets/video/video-homepage2.mp4";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
+import { useTranslation, Trans } from "react-i18next";
+
 const HomePage = (props) => {
     const [showVid, setShowVid] = useState(false);
+
+    const { t } = useTranslation();
 
     const handleOnClickShowHide = () => {
         setShowVid(!showVid);
@@ -58,15 +62,13 @@ const HomePage = (props) => {
             )}
             {!showVid && (
                 <div className="homepage-content">
-                    <div className="title-1">Make forms worth filling out</div>
+                    <div className="title-1">{t("homepage.title1")}</div>
                     <div className="title-2">
-                        Get more data—like signups, feedback, and anything
-                        else—with forms designed to be{" "}
-                        <b>refreshingly different.</b>
+                        {t("homepage.title2")} <b>{t("homepage.title2b")}.</b>
                     </div>
                     <div className="title-3">
                         {isAuthenticated === false ? (
-                            <button>Get started—it's free</button>
+                            <button>{t("homepage.title3")}</button>
                         ) : (
                             <button onClick={() => navigate("/users")}>
                                 Làm bài ngay

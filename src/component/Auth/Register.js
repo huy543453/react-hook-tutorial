@@ -4,6 +4,7 @@ import { LuEyeOff } from "react-icons/lu";
 import { useNavigate } from "react-router-dom";
 import { postRegister } from "../../service/apiService";
 import { toast } from "react-toastify";
+import Language from "../Header/Language";
 
 const Register = (props) => {
     const [email, setEmail] = useState("");
@@ -67,15 +68,18 @@ const Register = (props) => {
 
     return (
         <div className="bg-body-secondary vh-100">
-            <div className="text-end py-2 pe-5 mb-5 border-top border-bottom border-black">
-                <span>Đã có tài khoản</span>
+            <div className="py-2 pe-5 mb-5 border-top border-bottom border-black d-flex align-items-center justify-content-end">
+                <span>Đã có tài khoản?</span>
                 <button
-                    className="btn btn-primary ms-2"
+                    className="btn btn-primary mx-2"
                     onClick={() => navigate("/login")}
                 >
                     {" "}
                     Đăng nhập
                 </button>
+                <div className="me-4">
+                    <Language />
+                </div>
             </div>
 
             <div className="col-4 p-4 mx-auto text-center border rounded border-black border-2">
