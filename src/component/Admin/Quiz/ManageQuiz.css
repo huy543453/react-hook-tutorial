@@ -1,0 +1,55 @@
+.quiz-container .add fieldset legend {
+  font-size: 16px; }
+.quiz-container .add fieldset .label-upload {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3px 10px;
+  gap: 5px;
+  width: fit-content;
+  border: 2px solid black;
+  background: #f0f0f0;
+  border-radius: 5px;
+  cursor: pointer; }
+  .quiz-container .add fieldset .label-upload:hover {
+    background: #aaaaaa; }
+.quiz-container .add fieldset .image-preview {
+  display: flex;
+  height: 150px;
+  width: fit-content;
+  border: 1px dashed #ccc;
+  border-radius: 5px;
+  justify-content: center;
+  align-items: center;
+  color: #ccc; }
+  .quiz-container .add fieldset .image-preview img {
+    max-height: 100%;
+    max-width: 100%; }
+
+.modal-add .label-upload {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3px 10px;
+  gap: 5px;
+  width: fit-content;
+  border: 2px solid black;
+  background: #f0f0f0;
+  border-radius: 5px;
+  cursor: pointer; }
+  .modal-add .label-upload:hover {
+    background: #aaaaaa; }
+.modal-add .image-preview {
+  display: flex;
+  height: 150px;
+  width: fit-content;
+  border: 1px dashed #ccc;
+  border-radius: 5px;
+  justify-content: center;
+  align-items: center;
+  color: #ccc; }
+  .modal-add .image-preview img {
+    max-height: 100%;
+    max-width: 100%; }
+
+/*# sourceMappingURL=ManageQuiz.css.map */

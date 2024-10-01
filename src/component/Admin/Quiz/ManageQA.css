@@ -1,0 +1,45 @@
+.question-container .add-question .content .question-content {
+  display: flex;
+  align-items: center;
+  gap: 15px; }
+  .question-container .add-question .content .question-content .upload-image .label-upload {
+    margin-right: 5px;
+    color: blue;
+    cursor: pointer; }
+    .question-container .add-question .content .question-content .upload-image .label-upload:hover {
+      color: gray; }
+  .question-container .add-question .content .question-content .btn-add .icon-add {
+    margin-right: 15px;
+    color: green;
+    cursor: pointer; }
+    .question-container .add-question .content .question-content .btn-add .icon-add:hover {
+      color: gray; }
+  .question-container .add-question .content .question-content .btn-add .icon-sub {
+    margin-right: 15px;
+    color: red;
+    cursor: pointer; }
+    .question-container .add-question .content .question-content .btn-add .icon-sub:hover {
+      color: gray; }
+  .question-container .add-question .content .question-content .preview-image {
+    cursor: pointer; }
+    .question-container .add-question .content .question-content .preview-image:hover {
+      color: gray; }
+.question-container .add-question .content .answer-content {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px; }
+  .question-container .add-question .content .answer-content .btn-add .icon-add {
+    margin-right: 15px;
+    color: green;
+    cursor: pointer; }
+    .question-container .add-question .content .answer-content .btn-add .icon-add:hover {
+      color: gray; }
+  .question-container .add-question .content .answer-content .btn-add .icon-sub {
+    margin-right: 15px;
+    color: red;
+    cursor: pointer; }
+    .question-container .add-question .content .answer-content .btn-add .icon-sub:hover {
+      color: gray; }
+
+/*# sourceMappingURL=ManageQA.css.map */

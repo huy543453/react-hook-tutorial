@@ -128,6 +128,29 @@ const postLogOut = (email, refresh_token) => {
     });
 };
 
+const getOverView = () => {
+    return axios.get("api/v1/overview");
+};
+
+const postChangePassword = (current_password, new_password) => {
+    // x-www-form-urlencoded
+    return axios.post("api/v1/change-password", {
+        current_password,
+        new_password,
+    });
+};
+
+const postUpdateProfile = (username, userImage) => {
+    const data = new FormData();
+    data.append("username", username);
+    data.append("userImage", userImage);
+    return axios.post("api/v1/profile", data);
+};
+
+const getHistortyDoQuiz = () => {
+    return axios.get("api/v1/history");
+};
+
 export {
     postAddUser,
     getAllUser,
@@ -150,4 +173,8 @@ export {
     getQuizQA,
     postUpsertQA,
     postLogOut,
+    getOverView,
+    postChangePassword,
+    postUpdateProfile,
+    getHistortyDoQuiz,
 };

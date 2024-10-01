@@ -32,49 +32,6 @@
                         }
                     }
                 }
-                // chữ new
-                .badge-red {
-                    color: red;
-                    font-weight: bold;
-                }
-                .footer {
-                    position: absolute;
-                    bottom: 0px;
-
-                    width: 100%;
-                    // copy từ link https://github.com/azouaoui-med/react-pro-sidebar/blob/v0.x/demo/src/styles/App.scss
-                    .sidebar-btn-wrapper {
-                        display: flex;
-                        justify-content: center;
-                        margin: 5px auto;
-
-                        .sidebar-btn {
-                            transition: width 0.3s;
-
-                            padding: 1px 5px;
-                            border-radius: 40px;
-                            background: transparent;
-                            color: black;
-
-                            text-decoration: none;
-                            margin: 0 auto;
-                            height: 35px;
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            text-overflow: ellipsis;
-                            overflow: hidden;
-                            span {
-                                margin-left: 5px;
-                                font-size: 13px;
-                            }
-                            &:hover {
-                                color: white;
-                                background-color: transparent;
-                            }
-                        }
-                    }
-                }
             }
         }
     }
@@ -83,13 +40,81 @@
         .admin-header {
             display: flex;
             align-items: center;
-            border: 1px solid green;
+            border: 1px solid #ccc;
+            border-left: none;
             padding: 5px;
             height: 50px;
+            gap: 24px;
+            justify-content: space-between;
+            .leftside {
+                cursor: pointer;
+            }
+            .rigthside {
+                display: flex;
+                gap: 24px;
+                margin-right: 32px;
+                .dropdown-menu {
+                    min-width: fit-content;
+                }
+
+                .language {
+                    .dropdown-menu {
+                        min-width: fit-content;
+                    }
+                    .dropdown-toggle::after {
+                        display: none !important;
+                    }
+                }
+            }
         }
         .admin-main {
             // hiện thanh scroll bar cần phải setting chiều cao để biết khi nào overflow
             height: calc(100vh - 50px);
+        }
+    }
+}
+
+// chữ new
+.badge-red {
+    color: red;
+    font-weight: bold;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0px;
+
+    width: 100%;
+    // copy từ link https://github.com/azouaoui-med/react-pro-sidebar/blob/v0.x/demo/src/styles/App.scss
+    .sidebar-btn-wrapper {
+        display: flex;
+        justify-content: center;
+        margin: 5px auto;
+
+        .sidebar-btn {
+            transition: width 0.3s;
+
+            padding: 1px 5px;
+            border-radius: 40px;
+            background: transparent;
+            color: black;
+
+            text-decoration: none;
+            margin: 0 auto;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            span {
+                margin-left: 5px;
+                font-size: 13px;
+            }
+            &:hover {
+                color: white;
+                background-color: transparent;
+            }
         }
     }
 }

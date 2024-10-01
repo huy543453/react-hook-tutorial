@@ -1,6 +1,6 @@
-import { INCREMENT, DECREMENT } from "../action/counterAction";
 import {
     FETCH_USER_LOGIN_SUCCESS,
+    UPDATE_USER_SUCCESS,
     USER_LOGOUT_SUCCESS,
 } from "../action/userAction";
 const INITIAL_STATE = {
@@ -44,6 +44,20 @@ const userReducer = (state = INITIAL_STATE, action) => {
                     email: "",
                 },
                 isAuthenticated: false,
+            };
+        case UPDATE_USER_SUCCESS:
+            console.log(action);
+            return {
+                ...state,
+                account: {
+                    access_token: action?.payload?.access_token,
+                    refresh_token: action?.payload?.refresh_token,
+                    username: action?.payload?.username,
+                    image: action?.payload?.image,
+                    role: action?.payload?.role,
+                    email: action?.payload?.email,
+                },
+                isAuthenticated: true,
             };
         default:
             return state;

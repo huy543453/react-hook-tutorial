@@ -50,21 +50,21 @@ body {
                 .vid {
                     .video1 {
                         position: absolute;
-                        top: 100px;
+                        top: 50px;
                         right: 50px;
                         width: 250px;
                         height: auto;
                     }
                     .video2 {
                         position: absolute;
-                        top: 100px;
+                        top: 50px;
                         right: 350px;
                         width: 250px;
                         height: auto;
                     }
                     .video4 {
                         position: absolute;
-                        top: 100px;
+                        top: 50px;
                         right: 650px;
                         width: 250px;
                         height: auto;
@@ -73,7 +73,7 @@ body {
 
                 .video3 {
                     position: absolute;
-                    top: 100px;
+                    top: 50px;
                     right: 5%;
                     width: 400px;
                     height: auto;
@@ -141,7 +141,5 @@ body {
     }
     .dropdown-toggle::after {
         display: none !important;
-        position: absolute;
-        right: 0;
     }
 }

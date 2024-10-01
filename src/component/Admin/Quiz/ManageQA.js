@@ -71,7 +71,7 @@ const ManageQA = (props) => {
                 if (q.imageFile) {
                     q.imageName = `Question-${q.id}.png`;
                     q.imageFile = await urltoFile(
-                        `data:imgae/png;base64,${q.imageFile}`,
+                        `data:image/png;base64,${q.imageFile}`,
                         `Question-${q.id}.png`,
                         "image/png"
                     );
@@ -277,6 +277,7 @@ const ManageQA = (props) => {
     };
     // console.log("question", questions);
 
+    // convert file to Base64
     const toBase64 = (file) =>
         new Promise((resolve, reject) => {
             const reader = new FileReader();

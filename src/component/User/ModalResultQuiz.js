@@ -5,7 +5,6 @@ const ModalResultQuiz = (props) => {
     const { show, setShow } = props;
 
     const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
 
     return (
         <>

@@ -3,107 +3,104 @@ import { Sidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar";
 
 import {
     FaTachometerAlt,
-    FaGithub,
     FaRegLaughWink,
     FaReact,
+    FaRegUser,
+    FaRegQuestionCircle,
 } from "react-icons/fa";
-import img1 from "../../assets/image/4258.png";
-import img2 from "../../assets/image/4300.png";
-import img3 from "../../assets/image/sex.png";
+import { MdOutlineQuiz } from "react-icons/md";
+
+import img2 from "../../assets/image/bg2.jpg";
+
 import { Link, useNavigate } from "react-router-dom";
 const SideBar = (props) => {
-    const { collapsed, toggled, handleToggleSidebar } = props;
+    const { collapsed, toggled, setToggled, setBroken } = props;
     const navigate = useNavigate();
+    const menuItemStyles = {
+        subMenuContent: () => ({
+            backgroundColor: "rgb(12 41 72)",
+        }),
+        button: {
+            "&:hover, &:active, &:focus": {
+                backgroundColor: "#00458b",
+                color: "#b6c8d9",
+                border: "1px solid black",
+            },
+            onBlur: (e) => {
+                if (!e.relatedTarget) {
+                    e.target.focus();
+                }
+            },
+        },
+    };
     return (
-        <>
+        <div
+            style={{
+                display: "flex",
+                height: "100%",
+                color: "rgb(139, 161, 183)",
+            }}
+        >
             <Sidebar
-                image={img1}
                 collapsed={collapsed}
+                width="300px"
+                backgroundColor="rgb(12 41 72)"
                 toggled={toggled}
+                onBreakPoint={setBroken}
+                onBackdropClick={() => setToggled(false)}
                 breakPoint="md"
-                onToggle={handleToggleSidebar}
             >
-                <>
-                    <div
-                        style={{
-                            padding: "24px",
-                            textTransform: "uppercase",
-                            fontWeight: "bold",
-                            fontSize: 14,
-                            letterSpacing: "1px",
-                            overflow: "hidden",
-                            textOverflow: "ellipsis",
-                            whiteSpace: "nowrap",
-                        }}
-                    >
-                        <img
-                            src={img2}
-                            width={"16px"}
-                            height={"auto"}
-                            alt=""
-                        ></img>
-                        &nbsp;{" "}
-                        <span onClick={() => navigate("/")}>Pro SideBar</span>
-                        &nbsp; <FaReact size={"2em"} />
-                    </div>
-                </>
-
-                <>
-                    <Menu iconShape="circle">
-                        <MenuItem
-                            icon={<FaTachometerAlt />}
-                            suffix={<span className="badge-red">New</span>}
-                            component={<Link to="/admins" />}
-                        >
-                            Dashboard
-                        </MenuItem>
-                    </Menu>
-                    <Menu iconShape="circle">
-                        <SubMenu label="Quản lý" icon={<FaRegLaughWink />}>
-                            <MenuItem
-                                component={<Link to="/admins/manage_users" />}
-                            >
-                                Quản lý User
-                            </MenuItem>
-                            <MenuItem
-                                component={<Link to="/admins/manage_quizzes" />}
-                            >
-                                Quản lý bài Quiz
-                            </MenuItem>
-                            <MenuItem
-                                component={
-                                    <Link to="/admins/manage_questions" />
-                                }
-                            >
-                                Quản lý câu hỏi
-                            </MenuItem>
-                        </SubMenu>
-                    </Menu>
-                </>
-
-                <div className="footer">
-                    <div className="sidebar-btn-wrapper">
-                        <a
-                            href="https://github.com/azouaoui-med/react-pro-sidebar"
-                            target="_blank"
-                            className="sidebar-btn"
-                            rel="noopener noreferrer"
-                        >
-                            <FaGithub />
-                            <span
-                                style={{
-                                    whiteSpace: "nowrap",
-                                    textOverflow: "ellipsis",
-                                    overflow: "hidden",
-                                }}
-                            >
-                                viewSource
-                            </span>
-                        </a>
-                    </div>
+                <div
+                    style={{
+                        textAlign: "center",
+                        padding: "24px",
+                        textTransform: "uppercase",
+                        fontWeight: "bold",
+                        fontSize: 14,
+                        letterSpacing: "1px",
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                        whiteSpace: "nowrap",
+                    }}
+                >
+                    <img src={img2} width={"16px"} height={"auto"} alt=""></img>
+                    &nbsp;{" "}
+                    <span onClick={() => navigate("/")}>Pro SideBar</span>
+                    &nbsp; <FaReact size={"2em"} />
                 </div>
+
+                <Menu menuItemStyles={menuItemStyles}>
+                    <MenuItem
+                        icon={<FaTachometerAlt />}
+                        suffix={<span className="badge-red">New</span>}
+                        component={<Link to="/admins" />}
+                    >
+                        Dashboard
+                    </MenuItem>
+
+                    <SubMenu label="Quản lý" icon={<FaRegLaughWink />}>
+                        <MenuItem
+                            icon={<FaRegUser />}
+                            component={<Link to="/admins/manage_users" />}
+                        >
+                            Quản lý User
+                        </MenuItem>
+                        <MenuItem
+                            icon={<MdOutlineQuiz />}
+                            component={<Link to="/admins/manage_quizzes" />}
+                        >
+                            Quản lý bài Quiz
+                        </MenuItem>
+                        <MenuItem
+                            icon={<FaRegQuestionCircle />}
+                            component={<Link to="/admins/manage_questions" />}
+                        >
+                            Quản lý câu hỏi
+                        </MenuItem>
+                    </SubMenu>
+                </Menu>
             </Sidebar>
-        </>
+        </div>
     );
 };
 

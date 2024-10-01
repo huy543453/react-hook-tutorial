@@ -16,7 +16,6 @@ const ModalView = (props) => {
             setUsername(userView.username);
             setRole(userView.role);
             if (userView.image !== "") {
-                setImage(userView.image);
                 setPreviewImage(`data:image/jpeg;base64,${userView.image}`);
             }
         }
@@ -28,7 +27,6 @@ const ModalView = (props) => {
         setPassword("");
         setEmail("");
         setRole("USER");
-        setImage("");
         setPreviewImage("");
         setUserView({});
     };
@@ -38,7 +36,6 @@ const ModalView = (props) => {
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
     const [role, setRole] = useState("USER");
-    const [image, setImage] = useState("");
     const [previewImage, setPreviewImage] = useState("");
 
     return (

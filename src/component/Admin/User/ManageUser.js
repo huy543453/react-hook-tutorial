@@ -1,20 +1,19 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
 import ModalAdd from "./ModalAdd";
 import "./ManageUser.scss";
 import { IoMdAddCircleOutline } from "react-icons/io";
-import TableUser from "./TableUser";
+// import TableUser from "./TableUser";
 import { getAllUser } from "../../../service/apiService";
 import ModalUpdate from "./ModalUpdate";
 import ModalView from "./ModalView";
 import ModalDelete from "./ModalDelete";
 import TableUserPaginate from "./TableUserPaginate";
 import { getUserWithPaginate } from "../../../service/apiService";
+import { IoMdSearch } from "react-icons/io";
 
 const ManageUser = (props) => {
-    const limit_user = 5;
+    const [limitUser, setLimitUser] = useState(5);
     const [pageCount, setPageCount] = useState(0);
     const [currentPage, setCurrentPage] = useState(1);
 
@@ -26,6 +25,7 @@ const ManageUser = (props) => {
     const [users, setUsers] = useState([]);
     const [userUpdate, setUserUpdate] = useState({});
     const [userDelete, setUserDelete] = useState({});
+    const [userFindName, setUserFindName] = useState();
 
     useEffect(() => {
         // loadUser();
@@ -40,9 +40,11 @@ const ManageUser = (props) => {
     };
 
     const loadUserPaginate = async (page) => {
-        let res = await getUserWithPaginate(page, limit_user);
+        let res = await getUserWithPaginate(page, limitUser);
         if (res.EC === 0) {
-            setUsers(res.DT.users);
+            let usersClone = res.DT.users;
+            // userClone = _.orderBy(userClone, ["username"], ["ASC"]);
+            setUsers(usersClone);
             setPageCount(res.DT.totalPages);
         }
     };
@@ -55,11 +57,26 @@ const ManageUser = (props) => {
         setUserDelete(user);
     };
 
+    const handleFindUser = async () => {
+        let res = await getUserWithPaginate(1, limitUser);
+        if (res.EC === 0) {
+            let usersClone = res.DT.users;
+            usersClone = usersClone.filter((item) =>
+                item.username.includes(userFindName)
+            );
+            // userClone = _.orderBy(userClone, ["username"], ["ASC"]);
+            setUsers(usersClone);
+            setPageCount(res.DT.totalPages);
+        }
+    };
+    // console.log("users", users);
+    // console.log("limitUser", limitUser);
+
     return (
         <div className="manage-user-container">
             <div className="title">Quản lý người dùng</div>
             <div className="content">
-                <div className="btn-add me-5">
+                <div className="btn-add">
                     <button
                         className="btn btn-primary border-rounded-1"
                         onClick={() => setShowModalAdd(true)}
@@ -67,6 +84,43 @@ const ManageUser = (props) => {
                         <IoMdAddCircleOutline /> Thêm người dùng
                     </button>
                 </div>
+                {/* Thanh tìm kiếm */}
+                <div className="d-flex justify-content-between">
+                    <div className="input-group w-25 ">
+                        <input
+                            type="text"
+                            className="form-control"
+                            placeholder="Nhập tên"
+                            onChange={(event) =>
+                                setUserFindName(event.target.value)
+                            }
+                        />
+                        <button
+                            className="btn btn-outline-primary"
+                            type="button"
+                            onClick={() => handleFindUser()}
+                        >
+                            <IoMdSearch />
+                        </button>
+                    </div>
+                    <div className="input-group w-25 ">
+                        <input
+                            type="text"
+                            className="form-control"
+                            placeholder="Nhập số giới hạn user"
+                            onChange={(event) =>
+                                setLimitUser(event.target.value)
+                            }
+                        />
+                        <button
+                            className="btn btn-outline-primary"
+                            type="button"
+                        >
+                            <IoMdSearch onClick={() => loadUserPaginate(1)} />
+                        </button>
+                    </div>
+                </div>
+
                 <div className="table-container">
                     {/* <TableUser
                         users={users}
